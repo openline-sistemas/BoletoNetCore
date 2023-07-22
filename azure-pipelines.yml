@@ -62,8 +62,8 @@ steps:
       echo "Structure of work folder of this pipeline:"
       tree $(Agent.WorkFolder)\1 /f
 
-      echo "Bin:"
-      cd "$(Build.SourcesDirectory)/BoletoNetCore/bin"
+      echo "Release:"
+      cd "$(Build.SourcesDirectory)/BoletoNetCore/bin/Release"
       ls
 
 - task: CopyFiles@2

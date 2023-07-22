@@ -31,26 +31,26 @@ steps:
   inputs:
     command: 'restore'
     configuration: $(buildConfiguration)
-    projects: 'BoletoNetCore/BoletoNetCore.csproj'
+    projects: '$(Build.SourcesDirectory)/BoletoNetCore/BoletoNetCore.csproj'
 
-- task: DotNetCoreCLI@2
-  displayName: Dotnet Restore BoletoNetCorePdf
-  inputs:
-    command: 'restore'
-    configuration: $(buildConfiguration)
-    projects: 'BoletoNetCore.Pdf/BoletoNetCore.Pdf.csproj'
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    configuration: $(buildConfiguration)
-    projects: 'BoletoNetCore/BoletoNetCore.csproj'
+# - task: DotNetCoreCLI@2
+#   displayName: Dotnet Restore BoletoNetCorePdf
+#   inputs:
+#     command: 'restore'
+#     configuration: $(buildConfiguration)
+#     projects: '$(Build.SourcesDirectory)/BoletoNetCore.Pdf/BoletoNetCore.Pdf.csproj'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
     configuration: $(buildConfiguration)
-    projects: 'BoletoNetCore.Pdf/BoletoNetCore.Pdf.csproj'
+    projects: 'BoletoNetCore/BoletoNetCore.csproj'
+
+# - task: DotNetCoreCLI@2
+#   inputs:
+#     command: 'build'
+#     configuration: $(buildConfiguration)
+#     projects: 'BoletoNetCore.Pdf/BoletoNetCore.Pdf.csproj'
     
 - task: CmdLine@2
   inputs:
@@ -62,22 +62,22 @@ steps:
       cd "$(Build.SourcesDirectory)/BoletoNetCore/bin"
       ls
 
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/BoletoNetCore/BoletoNetCore/bin/Release/'
-    Contents: '*.nupkg'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    CleanTargetFolder: true
+# - task: CopyFiles@2
+#   inputs:
+#     SourceFolder: '$(Build.SourcesDirectory)/BoletoNetCore/BoletoNetCore/bin/Release/'
+#     Contents: '*.nupkg'
+#     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+#     CleanTargetFolder: true
 
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/BoletoNetCore.Pdf/BoletoNetCore.Pdf/bin/Release/'
-    Contents: '*.nupkg'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+# - task: CopyFiles@2
+#   inputs:
+#     SourceFolder: '$(Build.SourcesDirectory)/BoletoNetCore.Pdf/BoletoNetCore.Pdf/bin/Release/'
+#     Contents: '*.nupkg'
+#     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-- task: PublishBuildArtifacts@1
-  displayName: Publish Artifact
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'BoletoNetCore'
-    publishLocation: 'Container'
+# - task: PublishBuildArtifacts@1
+#   displayName: Publish Artifact
+#   inputs:
+#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#     ArtifactName: 'BoletoNetCore'
+#     publishLocation: 'Container'

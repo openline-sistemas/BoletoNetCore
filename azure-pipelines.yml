@@ -1,0 +1,59 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pool:
+   vmImage: 'ubuntu-20.04'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
+
+
+- task: DotNetCoreCLI@2
+  displayName: Dotnet Restore BoletoNetCore
+  inputs:
+    command: 'restore'
+    projects: 'BoletoNetCore/BoletoNetCore.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: Dotnet Restore BoletoNetCorePdf
+  inputs:
+    command: 'restore'
+    projects: 'BoletoNetCore.Pdf/BoletoNetCore.Pdf.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: Dotnet Pack BoletoNetCore
+  inputs:
+    command: 'pack'
+    packagesToPack: 'BoletoNetCore/BoletoNetCore.csproj'
+    versioningScheme: 'off'
+    verbosityPack: 'Diagnostic'
+
+- task: DotNetCoreCLI@2
+  displayName: Dotnet Pack BoletoNetCore
+  inputs:
+    command: 'pack'
+    packagesToPack: 'BoletoNetCore.Pdf/BoletoNetCore.Pdf.csproj'
+    versioningScheme: 'off'
+    verbosityPack: 'Diagnostic'
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Artifact
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'BoletoNetCore'
+    publishLocation: 'Container'

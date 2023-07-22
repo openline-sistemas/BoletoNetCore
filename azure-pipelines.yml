@@ -27,61 +27,77 @@ steps:
     version: 6.x
 
 - task: DotNetCoreCLI@2
-  displayName: Dotnet Restore BoletoNetCore
+  displayName: Dotnet Restore
   inputs:
     command: 'restore'
-    configuration: $(buildConfiguration)
-    projects: 'BoletoNetCore/BoletoNetCore.csproj'
+    projects: '**/*.csproj'
+    feedsToUse: 'config'
+    nugetConfigPath: '$(Build.SourcesDirectory)/nuget.config'
 
 - task: DotNetCoreCLI@2
-  displayName: Dotnet Restore BoletoNetCorePdf
+  displayName: Dotnet Pack
   inputs:
-    command: 'restore'
-    configuration: $(buildConfiguration)
-    projects: 'BoletoNetCore.Pdf/BoletoNetCore.Pdf.csproj'
+    command: 'pack'
+    packagesToPack: '**/*.csproj'
+    versioningScheme: 'off'
+    verbosityPack: 'Diagnostic'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    configuration: $(buildConfiguration)
-    projects: 'BoletoNetCore/BoletoNetCore.csproj'
+# - task: DotNetCoreCLI@2
+#   displayName: Dotnet Restore BoletoNetCore
+#   inputs:
+#     command: 'restore'
+#     configuration: $(buildConfiguration)
+#     projects: 'BoletoNetCore/BoletoNetCore.csproj'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    configuration: $(buildConfiguration)
-    projects: 'BoletoNetCore.Pdf/BoletoNetCore.Pdf.csproj'
+# - task: DotNetCoreCLI@2
+#   displayName: Dotnet Restore BoletoNetCorePdf
+#   inputs:
+#     command: 'restore'
+#     configuration: $(buildConfiguration)
+#     projects: 'BoletoNetCore.Pdf/BoletoNetCore.Pdf.csproj'
+
+# - task: DotNetCoreCLI@2
+#   inputs:
+#     command: 'build'
+#     configuration: $(buildConfiguration)
+#     projects: 'BoletoNetCore/BoletoNetCore.csproj'
+
+# - task: DotNetCoreCLI@2
+#   inputs:
+#     command: 'build'
+#     configuration: $(buildConfiguration)
+#     projects: 'BoletoNetCore.Pdf/BoletoNetCore.Pdf.csproj'
     
-- task: CmdLine@2
-  inputs:
-    script: |
-      echo "Structure of work folder of this pipeline:"
-      tree $(Agent.WorkFolder)\1 /f
+# - task: CmdLine@2
+#   inputs:
+#     script: |
+#       echo "Structure of work folder of this pipeline:"
+#       tree $(Agent.WorkFolder)\1 /f
       
-      echo "Build.ArtifactStagingDirectory:" 
+#       echo "Build.ArtifactStagingDirectory:" 
       
-      echo "$(Build.ArtifactStagingDirectory)"
+#       echo "$(Build.ArtifactStagingDirectory)"
       
-      echo "Build.BinariesDirectory:" 
+#       echo "Build.BinariesDirectory:" 
       
-      echo "$(Build.BinariesDirectory)"
+#       echo "$(Build.BinariesDirectory)"
       
-      echo "Build.SourcesDirectory:"
+#       echo "Build.SourcesDirectory:"
       
-      echo "$(Build.SourcesDirectory)"
+#       echo "$(Build.SourcesDirectory)"
 
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/BoletoNetCore/BoletoNetCore/bin/Release/'
-    Contents: '*.nupkg'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    CleanTargetFolder: true
+# - task: CopyFiles@2
+#   inputs:
+#     SourceFolder: '$(Build.SourcesDirectory)/BoletoNetCore/BoletoNetCore/bin/Release/'
+#     Contents: '*.nupkg'
+#     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+#     CleanTargetFolder: true
 
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/BoletoNetCore.Pdf/BoletoNetCore.Pdf/bin/Release/'
-    Contents: '*.nupkg'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+# - task: CopyFiles@2
+#   inputs:
+#     SourceFolder: '$(Build.SourcesDirectory)/BoletoNetCore.Pdf/BoletoNetCore.Pdf/bin/Release/'
+#     Contents: '*.nupkg'
+#     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
   displayName: Publish Artifact

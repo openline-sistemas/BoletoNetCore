@@ -21,7 +21,10 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-
+- task: UseDotNet@2
+  displayName: Install DotNet 6
+  inputs:
+    version: 6.x
 
 - task: DotNetCoreCLI@2
   displayName: Dotnet Restore BoletoNetCore

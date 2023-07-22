@@ -68,14 +68,14 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/BoletoNetCore/BoletoNetCore/bin/Release/'
+    SourceFolder: '$(Build.SourcesDirectory)/BoletoNetCore/bin/Release'
     Contents: '*.nupkg'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     CleanTargetFolder: true
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/BoletoNetCore.Pdf/BoletoNetCore.Pdf/bin/Release/'
+    SourceFolder: '$(Build.SourcesDirectory)/BoletoNetCore/bin/Release'
     Contents: '*.nupkg'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 

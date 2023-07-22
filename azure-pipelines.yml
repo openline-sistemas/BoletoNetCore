@@ -39,20 +39,14 @@ steps:
     projects: 'BoletoNetCore.Pdf/BoletoNetCore.Pdf.csproj'
 
 - task: DotNetCoreCLI@2
-  displayName: Dotnet Pack BoletoNetCore
   inputs:
-    command: 'pack'
-    packagesToPack: 'BoletoNetCore/BoletoNetCore.csproj'
-    versioningScheme: 'off'
-    verbosityPack: 'Diagnostic'
+    command: 'build'
+    projects: 'BoletoNetCore/BoletoNetCore.csproj'
 
 - task: DotNetCoreCLI@2
-  displayName: Dotnet Pack BoletoNetCore
   inputs:
-    command: 'pack'
-    packagesToPack: 'BoletoNetCore.Pdf/BoletoNetCore.Pdf.csproj'
-    versioningScheme: 'off'
-    verbosityPack: 'Diagnostic'
+    command: 'build'
+    projects: 'BoletoNetCore.Pdf/BoletoNetCore.Pdf.csproj'
 
 - task: PublishBuildArtifacts@1
   displayName: Publish Artifact

@@ -30,23 +30,45 @@ steps:
   displayName: Dotnet Restore BoletoNetCore
   inputs:
     command: 'restore'
+    configuration: $(buildConfiguration)
     projects: 'BoletoNetCore/BoletoNetCore.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: Dotnet Restore BoletoNetCorePdf
   inputs:
     command: 'restore'
+    configuration: $(buildConfiguration)
     projects: 'BoletoNetCore.Pdf/BoletoNetCore.Pdf.csproj'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
+    configuration: $(buildConfiguration)
     projects: 'BoletoNetCore/BoletoNetCore.csproj'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
+    configuration: $(buildConfiguration)
     projects: 'BoletoNetCore.Pdf/BoletoNetCore.Pdf.csproj'
+    
+- task: CmdLine@2
+  inputs:
+    script: |
+      echo "Structure of work folder of this pipeline:"
+      tree $(Agent.WorkFolder)\1 /f
+      
+      echo "Build.ArtifactStagingDirectory:" 
+      
+      echo "$(Build.ArtifactStagingDirectory)"
+      
+      echo "Build.BinariesDirectory:" 
+      
+      echo "$(Build.BinariesDirectory)"
+      
+      echo "Build.SourcesDirectory:"
+      
+      echo "$(Build.SourcesDirectory)"
 
 - task: CopyFiles@2
   inputs:

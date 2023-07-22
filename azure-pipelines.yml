@@ -48,6 +48,19 @@ steps:
     command: 'build'
     projects: 'BoletoNetCore.Pdf/BoletoNetCore.Pdf.csproj'
 
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '"BoletoNetCore/BoletoNetCore/bin/Release/"'
+    Contents: '*.nupkg'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '"BoletoNetCore.Pdf/BoletoNetCore.Pdf/bin/Release/"'
+    Contents: '*.nupkg'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
 - task: PublishBuildArtifacts@1
   displayName: Publish Artifact
   inputs:

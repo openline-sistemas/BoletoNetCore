@@ -57,13 +57,9 @@ steps:
     script: |
       echo "Structure of work folder of this pipeline:"
       tree $(Agent.WorkFolder)\1 /f
-      
-      echo "Build.SourcesDirectory:"
-      cd "$(Build.SourcesDirectory)"
-      ls
 
-      echo "BoletoNetCore:"
-      cd "$(Build.SourcesDirectory)/BoletoNetCore/"
+      echo "Bin:"
+      cd "$(Build.SourcesDirectory)/BoletoNetCore/bin"
       ls
 
 - task: CopyFiles@2

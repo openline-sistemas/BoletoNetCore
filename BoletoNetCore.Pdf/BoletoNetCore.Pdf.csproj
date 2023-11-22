@@ -2,7 +2,7 @@
 
   <PropertyGroup>
 	  <Title>BoletoNetCore.Openline.Pdf</Title>
-	  <Version>1.0.0.1</Version>
+	  <Version>1.2.0</Version>
 	  <AssemblyName>BoletoNetCore.Openline.Pdf</AssemblyName>
 	  <Description>BoletoNetCore.Openline.Pdf</Description>
 	  <PackageId>BoletoNetCore.Openline.Pdf</PackageId>
@@ -30,15 +30,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Rotativa\Linux\libwkhtmltox.so">
+    <Content Include="Rotativa\Windows\**\*">
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\Rotativa\Windows</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Rotativa\Windows\wkhtmltopdf.exe">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Rotativa\Linux\**\*">
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\Rotativa\Linux</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Rotativa\Windows\wkhtmltox.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
+
 
 </Project>

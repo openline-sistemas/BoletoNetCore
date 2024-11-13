@@ -2,7 +2,7 @@
 
   <PropertyGroup>
 	  <Title>BoletoNetCore.Openline.Pdf</Title>
-	  <Version>1.2.0</Version>
+	  <Version>1.3.0</Version>
 	  <AssemblyName>BoletoNetCore.Openline.Pdf</AssemblyName>
 	  <Description>BoletoNetCore.Openline.Pdf</Description>
 	  <PackageId>BoletoNetCore.Openline.Pdf</PackageId>

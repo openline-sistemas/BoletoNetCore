@@ -2,12 +2,12 @@
 
   <PropertyGroup>
 	  <Title>BoletoNetCore.Openline</Title>
-	  <Version>1.3.0-beta</Version>
+	  <Version>1.3.1-beta</Version>
 	  <AssemblyName>BoletoNetCore.Openline</AssemblyName>
 	  <Description>BoletoNetCore.Openline</Description>
 	  <PackageId>BoletoNetCore.Openline</PackageId>
 	  <authors>BoletoNetCore, Openline Solutions</authors>
-      <PackageReleaseNotes>Implementação inicial carteira banco inter</PackageReleaseNotes>
+      <PackageReleaseNotes>Ajustando retorno especie documento santander</PackageReleaseNotes>
 	  <Copyright>BoletoNetCore</Copyright>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <ApplicationIcon />

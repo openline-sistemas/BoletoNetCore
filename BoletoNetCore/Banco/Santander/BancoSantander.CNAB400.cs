@@ -111,7 +111,7 @@ namespace BoletoNetCore
                 reg.Adicionar(TTiposDadoEDI.ediNumericoSemSeparador_, 0127, 013, 2, boleto.ValorTitulo, '0');
                 reg.Adicionar(TTiposDadoEDI.ediAlphaAliEsquerda_____, 0140, 003, 0, "033", '0');
                 reg.Adicionar(TTiposDadoEDI.ediAlphaAliEsquerda_____, 0143, 005, 0, string.Empty, '0');
-                reg.Adicionar(TTiposDadoEDI.ediNumericoSemSeparador_, 0148, 002, 0, boleto.EspecieDocumento.GetHashCode(), '0');
+                reg.Adicionar(TTiposDadoEDI.ediNumericoSemSeparador_, 0148, 002, 0, AjustaEspecieCnab400(boleto.EspecieDocumento), '0');
                 reg.Adicionar(TTiposDadoEDI.ediNumericoSemSeparador_, 0150, 001, 0, boleto.Aceite, ' ');
                 reg.Adicionar(TTiposDadoEDI.ediDataDDMMAA___________, 0151, 006, 0, boleto.DataEmissao, ' ');
                 reg.Adicionar(TTiposDadoEDI.ediAlphaAliEsquerda_____, 0157, 002, 0, boleto.CodigoInstrucao1, '0');
@@ -334,6 +334,31 @@ namespace BoletoNetCore
                     return "Cancelamento da Baixa Operacional Enviado pela Cip";
                 default:
                     return "";
+            }
+        }
+
+        private static string AjustaEspecieCnab400(TipoEspecieDocumento especieDocumento)
+        {
+            switch (especieDocumento)
+            {
+                case TipoEspecieDocumento.DM:
+                    return "01";
+                case TipoEspecieDocumento.NP:
+                    return "02";
+                case TipoEspecieDocumento.AP:
+                    return "03";
+                case TipoEspecieDocumento.RC:
+                    return "05";
+                case TipoEspecieDocumento.DS:
+                    return "06";
+                case TipoEspecieDocumento.LC:
+                    return "07";
+                case TipoEspecieDocumento.BP:
+                    return "08";
+                case TipoEspecieDocumento.CC:
+                    return "19";
+                default:
+                    return "99";
             }
         }
 
